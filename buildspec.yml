@@ -3,18 +3,8 @@ version: 0.2
 # Variables de entorno que deben estar configuradas en CodeBuild:
 # AWS_ACCOUNT_ID: ID de tu cuenta AWS (ej: 534242643194)
 # AWS_DEFAULT_REGION: us-east-2
-# IMAGE_REPO_NAME: api-calendario (nombre de tu repositorio ECR)
-# CONTAINER_NAME: api-calendario-container (nombre del contenedor en tu task-definition.json)
-
-phases:
-  pre_build:
-    commands:
-      - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-      - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME
-      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - IMAGE_TAG=$COMMIT_HASH  
-version: 0.2
+# IMAGE_REPO_NAME: api-calendario
+# CONTAINER_NAME: api-calendario-container
 
 phases:
   install:
